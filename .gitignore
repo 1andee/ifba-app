@@ -1,0 +1,15 @@
+app/**/*.js
+app/**/*.js.map
+hooks/
+lib/
+node_modules/
+platforms/
+tmp/
+typings/
+.DS_Store
+.vscode
+*.js
+.DS_Store
+app/tns_modules/
+!app/application.android.js
+!karma.conf.js
