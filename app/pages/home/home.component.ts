@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular/router";
 import * as utils from "utils/utils";
-import { Router } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -11,7 +11,10 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
-    constructor(private route: Router, private router: RouterExtensions) { }
+    constructor(private page: Page, private router: RouterExtensions) {
+        page.actionBarHidden = false;
+        page.actionBar.title = "Home";
+    }
 
     goFacebook() {
         utils.openUrl("http://facebook.com/internationalfirebuffassociation/");
