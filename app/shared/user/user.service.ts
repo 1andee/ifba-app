@@ -17,7 +17,7 @@ export class UserService {
     }
 
     login() {
-        return this.http.get(`https://raw.githubusercontent.com/1andee/ifba-server/master/version.json?token=AQDLXLwVOS5eKBH3dp8AqGDMHVbGy7nGks5bTWVgwA%3D%3D`)
+        return this.http.get(`https://raw.githubusercontent.com/1andee/ifba-server/master/version.json?token=AQDLXGCkhSvqfn8WvoizDFgf7KzUiUvIks5bVqD_wA%3D%3D`)
             .map(response => response)
     }
 }
