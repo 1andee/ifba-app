@@ -6,6 +6,7 @@ import { UserService } from "../../shared/services.module";
 import { RouterExtensions } from "nativescript-angular/router";
 import { alert } from "ui/dialogs";
 import * as appVersion from "nativescript-appversion";
+import * as platform from 'platform';
 import { on as applicationOn, resumeEvent, ApplicationEventData } from "application";
 
 @Component({
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
                 .subscribe(
                     (res: any) => {
                         console.log(res);
-                        if (res.version == userVersion) {
+                        if (platform.isAndroid && res.androidVersion == userVersion ||
+                            platform.isIOS && res.iosVersion == userVersion) {
                             setTimeout(() => { this.router.navigate(["/lazy/home"], { clearHistory: true, animated: false }) }, 500);
                         } else {
                             alert({
