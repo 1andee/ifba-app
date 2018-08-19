@@ -1,30 +1,36 @@
-
 import { NgModule } from "@angular/core";
-import { NativeScriptFormsModule } from "nativescript-angular/forms";
-import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
+import { NativeScriptCommonModule } from "nativescript-angular/common";
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { AppRoutingModule } from "./app.routing";
 import { ServicesModule } from "./shared/services.module";
 
-import { routing } from "./app.routing";
-import { LoginComponent } from "./pages/login/login.component";
 import { AppComponent } from "./app.component";
+import { LoginComponent } from "./pages/login/login.component";
+
+// Uncomment and add to NgModule imports if you need to use two-way binding
+// import { NativeScriptFormsModule } from "nativescript-angular/forms";
+
+// Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
+// import { NativeScriptHttpModule } from "nativescript-angular/http";
 
 @NgModule({
+    bootstrap: [
+        AppComponent
+    ],
     imports: [
         NativeScriptModule,
-        NativeScriptUIListViewModule,
-        NativeScriptFormsModule,
+        NativeScriptCommonModule,
         NativeScriptHttpClientModule,
-        NativeScriptRouterModule,
-        routing,
+        AppRoutingModule,
         ServicesModule.forRoot()
     ],
     declarations: [
         AppComponent,
         LoginComponent
-    ],
-    bootstrap: [AppComponent]
+    ]
 })
+/*
+Pass your application module to the bootstrapModule function located in main.ts to start your app
+*/
 export class AppModule { }

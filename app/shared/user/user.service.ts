@@ -2,12 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Config } from "../config";
 import { RouterExtensions } from "nativescript-angular/router";
-import "rxjs/add/operator/concat";
-import "rxjs/add/operator/delay";
-import "rxjs/add/operator/catch";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/retryWhen";
-import "rxjs/add/operator/take";
+import { map } from "rxjs/operators";
 
 @Injectable()
 export class UserService {
@@ -18,6 +13,6 @@ export class UserService {
 
     login() {
         return this.http.get(`https://raw.githubusercontent.com/1andee/ifba-server/master/version.json?token=AQDLXGCkhSvqfn8WvoizDFgf7KzUiUvIks5bVqD_wA%3D%3D`)
-            .map(response => response)
+            .pipe(map(reponse => reponse));
     }
 }

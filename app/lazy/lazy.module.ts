@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
-
+import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { navigatableComponents } from './lazy.routing';
 
 import { routing } from './lazy.routing';
@@ -9,8 +8,8 @@ import { routing } from './lazy.routing';
 @NgModule({
     imports: [
         routing,
-        NativeScriptUIListViewModule,
-        NativeScriptRouterModule
+        NativeScriptRouterModule,
+        NativeScriptCommonModule
     ],
     declarations: [
         ...navigatableComponents

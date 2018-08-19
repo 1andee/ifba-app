@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Page } from "ui/page";
-import { map } from "rxjs/operators";
 import { UserService } from "../../shared/services.module";
 import { RouterExtensions } from "nativescript-angular/router";
 import { alert } from "ui/dialogs";
@@ -28,35 +27,37 @@ export class LoginComponent implements OnInit {
 
     login(resume = false) {
         appVersion.getVersionCode().then((userVersion: string) => {
-            this.userService.login()
-                .subscribe(
-                    (res: any) => {
-                        console.log(res);
-                        if (platform.isAndroid && res.androidVersion == userVersion ||
-                            platform.isIOS && res.iosVersion == userVersion) {
-                            setTimeout(() => { this.router.navigate(["/lazy/home"], { clearHistory: true, animated: false }) }, 500);
-                        } else {
-                            alert({
-                                title: "Update Required",
-                                message: "Version " + userVersion + " is out of date. Please update.",
-                                okButtonText: "Ok"
-                            })
-                                .then(result => {
-                                    console.log("Update required");
-                                });
-                        }
-                    },
-                    (error) => {
-                        alert({
-                            title: "Sorry",
-                            message: "A network problem was encountered. Please check your connection.",
-                            okButtonText: "Retry"
-                        })
-                            .then(result => {
-                                this.login();
-                            });
-                    }
-                );
+            setTimeout(() => { this.router.navigate(["/lazy/home"], { clearHistory: true, animated: false }) }, 500);
+            // this.userService.login()
+            //     .subscribe(
+            //         (res: any) => {
+            //             console.log(res);
+            //             if (platform.isAndroid && res.androidVersion == userVersion ||
+            //                 platform.isIOS && res.iosVersion == userVersion) {
+            //                 setTimeout(() => { this.router.navigate(["/lazy/home"], { clearHistory: true, animated: false }) }, 500);
+            //             } else {
+            //                 alert({
+            //                     title: "Update Required",
+            //                     message: "Version " + userVersion + " is out of date. Please update.",
+            //                     okButtonText: "Ok"
+            //                 })
+            //                     .then(result => {
+            //                         console.log("Update required");
+            //                     });
+            //             }
+            //         },
+            //         (error) => {
+            //             console.log(error);
+            //             alert({
+            //                 title: "Sorry",
+            //                 message: "A network problem was encountered. Please check your connection.",
+            //                 okButtonText: "Retry"
+            //             })
+            //                 .then(result => {
+            //                     this.login();
+            //                 });
+            //         }
+            //     );
         });
     }
 

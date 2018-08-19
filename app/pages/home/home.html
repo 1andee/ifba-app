@@ -1,7 +1,20 @@
-<ActionBar title="hello world">
-</ActionBar>
+<StackLayout>
+    <GridLayout rows="auto" columns="auto" horizontalAlignment="center">
+        <GridLayout rows="auto" columns="*,auto" (tap)="selectState()">
+            <Label text="{{displayName}}" textwrap="true" horizontalAlignment="right"></Label>
+        </GridLayout>
+    </GridLayout>
+    <StackLayout orientation="vertical" width="100%" backgroundColor="#DCDCDC">
+        <Button text="Contact" (tap)="goTo('contact')"></Button>
 
-<StackLayout orientation="vertical" width="100%" backgroundColor="#DCDCDC">
-    <Label text="Hello World" textwrap="true"></Label>
-    <Button text="Contact" (tap)="goTo('contact')"></Button>
+        <Button text="Get My Location" (tap)="getLocation()" class="btn btn-primary"></Button>
+        <Label text="{{ 'Latitude: ' + lat }}" class="lbl"></Label>
+        <Label text="{{ 'Longitude: ' + lon }}" class="lbl"></Label>
+        <Label text="{{ 'Speed: ' + speed }}" class="lbl"></Label>
+        <Label text="{{ 'Address: ' + addr }}" class="lbl" textWrap="true"></Label>
+    </StackLayout>
+
+    <StackLayout *ngFor="let item of filteredClubs; let i = index;">
+        <Label text="{{item.name}}"></Label>
+    </StackLayout>
 </StackLayout>
