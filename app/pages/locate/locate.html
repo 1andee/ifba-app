@@ -1,0 +1,22 @@
+<StackLayout>
+    <StackLayout *ngIf="!this.showingExpanded">
+        <StackLayout *ngFor="let item of filteredClubs; let i = index;">
+            <Label text="{{item.name}}" (tap)="expandClub(item)"></Label>
+        </StackLayout>
+    </StackLayout>
+        
+    <StackLayout *ngIf="this.showingExpanded" marginTop="15">
+        <Label text="Close" (tap)="collapse()"></Label>
+        <Label text="{{club.name}}"></Label>
+        <StackLayout orientation="horizontal">
+            <Label text="{{club.location}}"></Label>
+            <Label text="Region: {{club.region}}"></Label>
+        </StackLayout>
+        <Label *ngIf="club.facebook" (tap)="openUrl(club.facebook)" text="{{club.facebook}}"></Label>
+        <Label *ngIf="club.twitter" (tap)="openUrl(club.twitter)" text="@{{club.twitter}}"></Label>
+        <Label *ngIf="club.instagram" (tap)="openUrl(club.instagram)" text="ig: {{club.instagram}}"></Label>
+        <Label *ngIf="club.website" (tap)="openUrl(club.website)" text="{{club.website}}"></Label>
+    </StackLayout>
+    
+    <ListPicker *ngIf="!this.showingExpanded" [items]="stateSelector" (selectedIndexChange)="selectedIndexChanged($event)"></ListPicker>
+</StackLayout>
