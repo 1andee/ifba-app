@@ -1,20 +1,30 @@
 <StackLayout>
     <StackLayout *ngIf="!this.showingExpanded">
+        <Label text="Showing results for {{this.picked}}" marginBottom="15"></Label>
         <StackLayout *ngFor="let item of filteredClubs; let i = index;">
             <Label text="{{item.name}}" (tap)="expandClub(item)"></Label>
         </StackLayout>
     </StackLayout>
         
-    <StackLayout *ngIf="this.showingExpanded" marginTop="15">
-        <Label text="Close" (tap)="collapse()"></Label>
-        <Label text="{{club.name}}"></Label>
+    <StackLayout *ngIf="this.showingExpanded" marginTop="15" padding="0 10">
+        <Label text="x" (tap)="collapse()" backgroundColor="red" color="white" width="20" horizontalAlignment="right"></Label>
+        <Label text="{{club.name}}" marginTop="10"></Label>
         <StackLayout orientation="horizontal">
-            <Label text="{{club.location}}"></Label>
-            <Label text="Region: {{club.region}}"></Label>
+            <Label *ngIf="club.address" text="{{club.address}}, "></Label>
+            <Label *ngIf="club.location" text="{{club.location}}, "></Label>
+            <Label text="{{club.state_code}}"></Label>
+            <Label *ngIf="club.country && club.country !== 'United States'" text=", {{club.country}}"></Label>
         </StackLayout>
-        <Label *ngIf="club.facebook" (tap)="openUrl(club.facebook)" text="{{club.facebook}}"></Label>
-        <Label *ngIf="club.twitter" (tap)="openUrl(club.twitter)" text="@{{club.twitter}}"></Label>
-        <Label *ngIf="club.instagram" (tap)="openUrl(club.instagram)" text="ig: {{club.instagram}}"></Label>
+        <Label text="Region {{club.region}}"></Label>
+        <Image *ngIf="club.facebook" horizontalAlignment="left" (tap)="openUrl(club.facebook)" src="~/assets/fb.png" width="10%" marginTop="15"></Image>
+        <StackLayout orientation="horizontal" *ngIf="club.twitter" padding="10 0" (tap)="openUrl('http://twitter.com/' + club.twitter)">
+            <Image src="~/assets/twitter.png" width="12%"></Image>
+            <Label text="@{{club.twitter}}"></Label>
+        </StackLayout>
+        <StackLayout (tap)="openUrl('http://instagram.com/' + club.instagram)" orientation="horizontal" *ngIf="club.instagram" padding="7 0">
+            <Image src="~/assets/ig.png" width="10%"></Image>
+            <Label text="  {{club.instagram}}"></Label>
+        </StackLayout>
         <Label *ngIf="club.website" (tap)="openUrl(club.website)" text="{{club.website}}"></Label>
     </StackLayout>
     

@@ -153,6 +153,7 @@ export class LocateComponent {
                 "name": "Gong Club",
                 "region": 9,
                 "country": "United States",
+                "address": "244 Bay St",
                 "state": "New Jersey",
                 "state_code": "NJ",
                 "location": "Jersey City",
@@ -264,9 +265,9 @@ export class LocateComponent {
                 "name": "Metropolitan Fire Association of Atlanta",
                 "region": 11,
                 "country": "United States",
-                "state": "Florida",
-                "state_code": "FL",
-                "location": "",
+                "state": "Georgia",
+                "state_code": "GA",
+                "location": "Atlanta",
                 "website": "",
                 "facebook": "",
                 "twitter": "",
@@ -289,12 +290,13 @@ export class LocateComponent {
                 "notes": ""
             }
         ];
-        this.stateSelector = ['All'];
         this.clubs.forEach((club) => {
             if (!this.stateSelector.includes(club.state_code) && club.state_code.length) {
                 this.stateSelector.push(club.state_code);
             }
         })
+        this.stateSelector.sort();
+        this.stateSelector.unshift('All');
     }
 
     filterClubs(state) {
