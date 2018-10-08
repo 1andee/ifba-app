@@ -26,6 +26,7 @@ ActionBar {
 
 .flp-container .flp-list-container .flp-listview .flp-row {
   background-color: white;
+  padding: 0 5;
 }
 /* .flp-container .flp-list-container .flp-listview .flp-row .flp-row-container {
   padding: 10;

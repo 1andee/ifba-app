@@ -1,12 +1,13 @@
 <StackLayout>
     <GridLayout>
         <StackLayout>
-            <Button text="Choose a State/Province" (tap)="showPicker()"></Button>
+            <Button width="65%" backgroundColor="lightblue" color="#000" text="Choose a State/Province" (tap)="showPicker()"></Button>
         </StackLayout>
-        <FilterableListpicker #stateFilter blur="dark" hintText="Type to filter..." [source]="stateList" (canceled)="cancelFilterableList($event)" (itemTapped)="itemTapped($event)"></FilterableListpicker>
+        <FilterableListpicker #stateFilter blur="dark" focusOnShow="true" hintText="Type to filter..." [source]="stateList" (canceled)="cancelFilterableList($event)" (itemTapped)="itemTapped($event)"></FilterableListpicker>
     
         <StackLayout *ngIf="!this.showingExpanded && !this.showingPicker" marginTop="20">
-            <Label text="Showing results for selected state" marginBottom="15"></Label>
+            <Label *ngIf="this.picked === 'All'" text="All Clubs" marginBottom="15"></Label>
+            <Label *ngIf="this.picked !== 'All'" text="Showing results for {{this.picked}}" marginBottom="15"></Label>
             <StackLayout *ngFor="let item of filteredClubs; let i = index;">
                 <Label text="{{item.name}}" (tap)="expandClub(item)"></Label>
             </StackLayout>

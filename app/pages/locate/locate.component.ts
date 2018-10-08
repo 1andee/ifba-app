@@ -306,7 +306,8 @@ export class LocateComponent {
     }
 
     cancelFilterableList() {
-        console.log('canceled');
+        this.filterClubs(this.picked);
+        this.showingPicker = false;
     }
     
     itemTapped(args) {
@@ -321,6 +322,7 @@ export class LocateComponent {
 
     filterClubs(state) {
         this.filteredClubs = [];
+        this.picked = state;
         this.clubs.forEach((club) => {
             if (state === 'All') {
                 this.filteredClubs.push(club);
