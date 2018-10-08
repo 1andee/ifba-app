@@ -1,8 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild, ElementRef } from "@angular/core";
 import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular/router";
 import * as utils from "utils/utils";
 import { ListPicker } from "ui/list-picker";
+import {registerElement} from "nativescript-angular/element-registry";
+registerElement("FilterableListpicker", () => require("nativescript-filterable-listpicker").FilterableListpicker);
 
 @Component({
     moduleId: module.id,
@@ -11,6 +13,7 @@ import { ListPicker } from "ui/list-picker";
     styleUrls: ["./locate-common.css", "./locate.css"]
 })
 export class LocateComponent {
+    @ViewChild('myfilter') myfilter: ElementRef;
     clubs: any = [];
     filteredClubs: any = [];
     stateSelector: any = [];
@@ -18,10 +21,14 @@ export class LocateComponent {
     index: number;
     showingExpanded: boolean = false;
     club: any;
+    stateList: any = [];
+    showingPicker: boolean = false;
 
     constructor(private page: Page, private router: RouterExtensions) {
         page.actionBar.title = "Club Locator";
         this.filteredClubs = [];
+        this.stateList = [];
+        this.showingPicker = false;
         this.clubs = [
             {
                 "name": "Box 15 Club of Los Angeles",
@@ -291,12 +298,26 @@ export class LocateComponent {
             }
         ];
         this.clubs.forEach((club) => {
-            if (!this.stateSelector.includes(club.state_code) && club.state_code.length) {
-                this.stateSelector.push(club.state_code);
+            if (!this.stateList.includes(club.state) && club.state.length) {
+                this.stateList.push(club.state);
             }
         })
-        this.stateSelector.sort();
-        this.stateSelector.unshift('All');
+        this.stateList.sort();
+        this.stateList.unshift('All');
+    }
+
+    cancelFilterableList() {
+        console.log('canceled');
+    }
+    
+    itemTapped(args) {
+        this.filterClubs(args.selectedItem);
+        this.showingPicker = false;
+    }
+    
+    showPicker() {
+        this.showingPicker = true;
+        this.myfilter.nativeElement.show();
     }
 
     filterClubs(state) {
@@ -304,17 +325,12 @@ export class LocateComponent {
         this.clubs.forEach((club) => {
             if (state === 'All') {
                 this.filteredClubs.push(club);
-            } else if (club.state_code === state) {
+            } else if (club.state === state) {
                 this.filteredClubs.push(club);
             }
         })
     }
 
-    selectedIndexChanged(args) {
-        let picker = <ListPicker>args.object;
-        this.picked = this.stateSelector[picker.selectedIndex];
-        this.filterClubs(this.picked);
-    }
     expandClub(item) {
         this.club = item;
         this.showingExpanded = true;
@@ -332,5 +348,6 @@ export class LocateComponent {
         this.router.navigate(["/lazy/" + route], { clearHistory: false });
     }
     ngOnInit() {
+        this.filterClubs('All');
     }
 }

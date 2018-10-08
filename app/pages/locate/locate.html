@@ -1,12 +1,18 @@
 <StackLayout>
-    <StackLayout *ngIf="!this.showingExpanded">
-        <Label text="Showing results for {{this.picked}}" marginBottom="15"></Label>
+    <GridLayout>
+        <StackLayout>
+            <Button text="Choose a State" (tap)="showPicker()"></Button>
+        </StackLayout>
+        <FilterableListpicker #myfilter blur="dark" hintText="Type to filter..." [source]="stateList" (canceled)="cancelFilterableList($event)" (itemTapped)="itemTapped($event)"></FilterableListpicker>
+    
+    <StackLayout *ngIf="!this.showingExpanded && !this.showingPicker" marginTop="20">
+        <Label text="Showing results for selected state" marginBottom="15"></Label>
         <StackLayout *ngFor="let item of filteredClubs; let i = index;">
             <Label text="{{item.name}}" (tap)="expandClub(item)"></Label>
         </StackLayout>
     </StackLayout>
         
-    <StackLayout *ngIf="this.showingExpanded" marginTop="15" padding="0 10">
+    <StackLayout *ngIf="this.showingExpanded && !this.showingPicker" marginTop="15" padding="0 10">
         <Label text="x" (tap)="collapse()" backgroundColor="red" color="white" width="20" horizontalAlignment="right"></Label>
         <Label text="{{club.name}}" marginTop="10"></Label>
         <StackLayout orientation="horizontal">
@@ -27,6 +33,6 @@
         </StackLayout>
         <Label *ngIf="club.website" (tap)="openUrl(club.website)" text="{{club.website}}"></Label>
     </StackLayout>
-    
-    <ListPicker *ngIf="!this.showingExpanded" [items]="stateSelector" (selectedIndexChange)="selectedIndexChanged($event)"></ListPicker>
+</GridLayout>
+
 </StackLayout>
