@@ -5,34 +5,34 @@
         </StackLayout>
         <FilterableListpicker #stateFilter blur="dark" hintText="Type to filter..." [source]="stateList" (canceled)="cancelFilterableList($event)" (itemTapped)="itemTapped($event)"></FilterableListpicker>
     
-    <StackLayout *ngIf="!this.showingExpanded && !this.showingPicker" marginTop="20">
-        <Label text="Showing results for selected state" marginBottom="15"></Label>
-        <StackLayout *ngFor="let item of filteredClubs; let i = index;">
-            <Label text="{{item.name}}" (tap)="expandClub(item)"></Label>
+        <StackLayout *ngIf="!this.showingExpanded && !this.showingPicker" marginTop="20">
+            <Label text="Showing results for selected state" marginBottom="15"></Label>
+            <StackLayout *ngFor="let item of filteredClubs; let i = index;">
+                <Label text="{{item.name}}" (tap)="expandClub(item)"></Label>
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
-        
-    <StackLayout *ngIf="this.showingExpanded && !this.showingPicker" marginTop="15" padding="0 10">
-        <Label text="x" (tap)="collapse()" backgroundColor="red" color="white" width="20" horizontalAlignment="right"></Label>
-        <Label text="{{club.name}}" marginTop="10"></Label>
-        <StackLayout orientation="horizontal">
-            <Label *ngIf="club.address" text="{{club.address}}, "></Label>
-            <Label *ngIf="club.location" text="{{club.location}}, "></Label>
-            <Label text="{{club.state_code}}"></Label>
-            <Label *ngIf="club.country && club.country !== 'United States'" text=", {{club.country}}"></Label>
+            
+        <StackLayout *ngIf="this.showingExpanded && !this.showingPicker" marginTop="15" padding="0 10">
+            <Label text="x" (tap)="collapse()" backgroundColor="red" color="white" width="20" horizontalAlignment="right"></Label>
+            <Label text="{{club.name}}" marginTop="10"></Label>
+            <StackLayout orientation="horizontal">
+                <Label *ngIf="club.address" text="{{club.address}}, "></Label>
+                <Label *ngIf="club.location" text="{{club.location}}, "></Label>
+                <Label text="{{club.state_code}}"></Label>
+                <Label *ngIf="club.country && club.country !== 'United States'" text=", {{club.country}}"></Label>
+            </StackLayout>
+            <Label text="Region {{club.region}}"></Label>
+            <Image *ngIf="club.facebook" horizontalAlignment="left" (tap)="openUrl(club.facebook)" src="~/assets/fb.png" width="10%" marginTop="15"></Image>
+            <StackLayout orientation="horizontal" *ngIf="club.twitter" padding="10 0" (tap)="openUrl('http://twitter.com/' + club.twitter)">
+                <Image src="~/assets/twitter.png" width="12%"></Image>
+                <Label text="@{{club.twitter}}"></Label>
+            </StackLayout>
+            <StackLayout (tap)="openUrl('http://instagram.com/' + club.instagram)" orientation="horizontal" *ngIf="club.instagram" padding="7 0">
+                <Image src="~/assets/ig.png" width="10%"></Image>
+                <Label text="  {{club.instagram}}"></Label>
+            </StackLayout>
+            <Label *ngIf="club.website" (tap)="openUrl(club.website)" text="{{club.website}}"></Label>
         </StackLayout>
-        <Label text="Region {{club.region}}"></Label>
-        <Image *ngIf="club.facebook" horizontalAlignment="left" (tap)="openUrl(club.facebook)" src="~/assets/fb.png" width="10%" marginTop="15"></Image>
-        <StackLayout orientation="horizontal" *ngIf="club.twitter" padding="10 0" (tap)="openUrl('http://twitter.com/' + club.twitter)">
-            <Image src="~/assets/twitter.png" width="12%"></Image>
-            <Label text="@{{club.twitter}}"></Label>
-        </StackLayout>
-        <StackLayout (tap)="openUrl('http://instagram.com/' + club.instagram)" orientation="horizontal" *ngIf="club.instagram" padding="7 0">
-            <Image src="~/assets/ig.png" width="10%"></Image>
-            <Label text="  {{club.instagram}}"></Label>
-        </StackLayout>
-        <Label *ngIf="club.website" (tap)="openUrl(club.website)" text="{{club.website}}"></Label>
-    </StackLayout>
-</GridLayout>
+    </GridLayout>
 
 </StackLayout>
