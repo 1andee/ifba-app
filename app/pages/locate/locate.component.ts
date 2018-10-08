@@ -329,6 +329,16 @@ export class LocateComponent {
                 this.filteredClubs.push(club);
             }
         })
+        this.sortFilteredClubs();
+    }
+
+    sortFilteredClubs() {
+        let newArray = this.filteredClubs.sort((a, b) => {
+            if (a.name < b.name) return -1;
+            else if (a.name > b.name) return 1;
+            return 0;
+        });
+        this.filteredClubs = newArray;
     }
 
     expandClub(item) {
