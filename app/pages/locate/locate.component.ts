@@ -2,7 +2,6 @@ import { Component, ViewChild, ElementRef } from "@angular/core";
 import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular/router";
 import * as utils from "utils/utils";
-import { ListPicker } from "ui/list-picker";
 import {registerElement} from "nativescript-angular/element-registry";
 registerElement("FilterableListpicker", () => require("nativescript-filterable-listpicker").FilterableListpicker);
 
@@ -13,7 +12,7 @@ registerElement("FilterableListpicker", () => require("nativescript-filterable-l
     styleUrls: ["./locate-common.css", "./locate.css"]
 })
 export class LocateComponent {
-    @ViewChild('myfilter') myfilter: ElementRef;
+    @ViewChild('stateFilter') stateFilter: ElementRef;
     clubs: any = [];
     filteredClubs: any = [];
     stateSelector: any = [];
@@ -317,7 +316,7 @@ export class LocateComponent {
     
     showPicker() {
         this.showingPicker = true;
-        this.myfilter.nativeElement.show();
+        this.stateFilter.nativeElement.show();
     }
 
     filterClubs(state) {
