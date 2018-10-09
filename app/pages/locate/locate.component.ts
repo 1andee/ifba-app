@@ -1,8 +1,10 @@
 import { Component, ViewChild, ElementRef } from "@angular/core";
 import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular/router";
+import { CardView } from 'nativescript-cardview';
 import * as utils from "utils/utils";
-import {registerElement} from "nativescript-angular/element-registry";
+import { registerElement } from "nativescript-angular/element-registry";
+registerElement('CardView', () => CardView);
 registerElement("FilterableListpicker", () => require("nativescript-filterable-listpicker").FilterableListpicker);
 
 @Component({
@@ -20,6 +22,7 @@ export class LocateComponent {
     index: number;
     showingExpanded: boolean = false;
     club: any;
+    regionList: any = [];
     stateList: any = [];
     showingPicker: boolean = false;
 
@@ -315,7 +318,7 @@ export class LocateComponent {
         this.showingPicker = false;
     }
     
-    showPicker() {
+    showStatePicker() {
         this.showingPicker = true;
         this.stateFilter.nativeElement.show();
     }

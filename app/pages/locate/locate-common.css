@@ -10,14 +10,15 @@
     text-align: center;
     margin: 0 auto;
 }
-.clubCard {
-    background-color: #fff;
-    margin: 10px;
-    padding: 10px;
-    border-width: 1px;
-    border-color: #000;
-    border-style: solid;
-    border-radius: 10px;
-    max-width: 250px;
+.cardStyle {
+    background-color: rgb(212, 212, 212);
+    color: #000;
     text-align: left;
+}
+.rightMargin {
+    margin-right: 15px;
+}
+.popover {
+    width: 80%;
+    height: 80%;
 }
