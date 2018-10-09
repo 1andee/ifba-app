@@ -3,7 +3,7 @@
         <ScrollView>
             <GridLayout rows="auto, auto, auto">
                 <StackLayout row="1" *ngIf="!this.showingExpanded" paddingTop="10">
-                    <Button width="65%" backgroundColor="lightblue" color="#000" text="Choose a State/Province" (tap)="showPicker()"></Button>
+                    <Button className="stateSelectBtn" text="Choose a State/Province" (tap)="showPicker()"></Button>
                 </StackLayout>
                 <StackLayout row="2" *ngIf="!this.showingExpanded" marginTop="20">
                     <Label *ngIf="this.picked === 'All'" text="All Clubs" marginBottom="15"></Label>
