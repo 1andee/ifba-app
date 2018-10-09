@@ -21,7 +21,7 @@ export class LocateComponent {
     picked: string;
     index: number;
     showingExpanded: boolean = false;
-    club: any;
+    selectedClub: any;
     regionList: any = [];
     stateList: any = [];
     showingPicker: boolean = false;
@@ -346,12 +346,12 @@ export class LocateComponent {
     }
 
     expandClub(item) {
-        this.club = item;
+        this.selectedClub = item;
         this.showingExpanded = true;
     }
 
     collapse() {
-        this.club = {};
+        this.selectedClub = {};
         this.showingExpanded = false;
     }
 
