@@ -22,9 +22,7 @@ export class HomeComponent {
         page.actionBar.title = "Home";
         this.lat = "";
         this.lon = "";
-        this.speed = "";
         this.addr = "";
-
     }
 
     getLocation() {
@@ -33,13 +31,12 @@ export class HomeComponent {
                 console.log(res);
                 this.lat = res.latitude;
                 this.lon = res.longitude;
-                this.speed = res.speed;
                 // get the address (REQUIRES YOUR OWN GOOGLE MAP API KEY!)
-                fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + res.latitude + "," + res.longitude + "&key=AIzaSyBfHUkK6hWIfd9fTCoq8jT2Hi0a9I9xg6k")
-                    .then((response) => response.json()).then((r) => {
-                        console.log('r', r);
-                        this.addr = r.results[0].formatted_address;
-                    });
+                // fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + res.latitude + "," + res.longitude + "&key=AIzaSyBfHUkK6hWIfd9fTCoq8jT2Hi0a9I9xg6k")
+                //     .then((response) => response.json()).then((r) => {
+                //         console.log('r', r);
+                //         this.addr = r.results[0].formatted_address;
+                //     });
             });
     }
 
