@@ -305,7 +305,7 @@ export class LocateComponent {
             }
         })
         this.stateList.sort();
-        this.stateList.unshift('All');
+        this.stateList.unshift('All States & Provinces');
     }
 
     cancelFilterableList() {
@@ -327,7 +327,7 @@ export class LocateComponent {
         this.filteredClubs = [];
         this.picked = state;
         this.clubs.forEach((club) => {
-            if (state === 'All') {
+            if (state === 'All States & Provinces' || state === 'Filter by State/Province') {
                 this.filteredClubs.push(club);
             } else if (club.state === state) {
                 this.filteredClubs.push(club);
@@ -362,6 +362,6 @@ export class LocateComponent {
         this.router.navigate(["/lazy/" + route], { clearHistory: false });
     }
     ngOnInit() {
-        this.filterClubs('All');
+        this.filterClubs('Filter by State/Province');
     }
 }
