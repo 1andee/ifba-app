@@ -1,13 +1,13 @@
 <StackLayout>
         <ScrollView>
-            <StackLayout *ngIf="!this.showingPicker && !this.showingExpanded">
+            <StackLayout *ngIf="!this.showingPicker">
                 <GridLayout rows="auto, auto, auto, auto" class="clubGrid">
                     <StackLayout row="0" paddingTop="10">
                         <Button className="stateSelectBtn" text="{{this.picked}}" (tap)="showStatePicker()"></Button>
                     </StackLayout>
-                    <StackLayout row="1" className="selectionHeader">
+                    <StackLayout row="1">
                         <StackLayout *ngFor="let item of filteredClubs; let i = index;">
-                            <CardView class="cardStyle" width="90%" margin="5" elevation="40" radius="1" (tap)="expandClub(item)">
+                            <CardView *ngIf="i !== selectedClubIndex" class="cardStyle" width="90%" margin="5" elevation="40" radius="1" (tap)="expandClub(item, i)">
                                 <GridLayout rows="*,*" columns="*,*" padding="12px">
                                     <Label text="{{item.name}}" horizontalAlignment="left" row="0" col="0" colSpan="2" textwrap="true"></Label>
                                     <StackLayout row="1" orientation="horizontal">
@@ -16,31 +16,32 @@
                                     </StackLayout>
                                 </GridLayout>
                             </CardView>
+                            <CardView *ngIf="i === selectedClubIndex" class="cardStyle" width="90%" margin="5" elevation="40" radius="1">
+                                <StackLayout className="expandedCard">
+                                    <Label text="x" (tap)="collapse()" color="#000" width="20" horizontalAlignment="right"></Label>
+                                    <Label text="{{selectedClub.name}}" marginTop="10" textwrap="true"></Label>
+                                    <StackLayout orientation="horizontal">
+                                        <Label *ngIf="selectedClub.address" text="{{selectedClub.address}}, "></Label>
+                                        <Label *ngIf="selectedClub.city" text="{{selectedClub.city}}, "></Label>
+                                        <Label text="{{selectedClub.state_code}}"></Label>
+                                        <Label *ngIf="selectedClub.country && selectedClub.country !== 'United States'" text=", {{selectedClub.country}}"></Label>
+                                    </StackLayout>
+                                    <Label text="Region {{selectedClub.region}}"></Label>
+                                    <Image *ngIf="selectedClub.facebook" horizontalAlignment="left" (tap)="openUrl(selectedClub.facebook)" src="~/assets/fb.png" width="10%" marginTop="15"></Image>
+                                    <StackLayout orientation="horizontal" *ngIf="selectedClub.twitter" padding="10 0" (tap)="openUrl('http://twitter.com/' + selectedClub.twitter)">
+                                        <Image src="~/assets/twitter.png" width="12%"></Image>
+                                        <Label text="@{{selectedClub.twitter}}"></Label>
+                                    </StackLayout>
+                                    <StackLayout (tap)="openUrl('http://instagram.com/' + selectedClub.instagram)" orientation="horizontal" *ngIf="selectedClub.instagram" padding="7 0">
+                                        <Image src="~/assets/ig.png" width="10%"></Image>
+                                        <Label text="  {{selectedClub.instagram}}"></Label>
+                                    </StackLayout>
+                                    <Label *ngIf="selectedClub.website" (tap)="openUrl(selectedClub.website)" text="{{selectedClub.website}}"></Label>
+                                </StackLayout>
+                            </CardView>
                         </StackLayout>
                     </StackLayout>
                 </GridLayout>
-            </StackLayout>
-            <!-- Detail View -->
-            <StackLayout *ngIf="this.showingExpanded" class="popover" marginTop="15" padding="0 10" backgroundColor="green">
-                <Label text="x" (tap)="collapse()" backgroundColor="red" color="white" width="20" horizontalAlignment="right"></Label>
-                <Label text="{{club.name}}" marginTop="10"></Label>
-                <StackLayout orientation="horizontal">
-                    <Label *ngIf="club.address" text="{{club.address}}, "></Label>
-                    <Label *ngIf="club.city" text="{{club.city}}, "></Label>
-                    <Label text="{{club.state_code}}"></Label>
-                    <Label *ngIf="club.country && club.country !== 'United States'" text=", {{club.country}}"></Label>
-                </StackLayout>
-                <Label text="Region {{club.region}}"></Label>
-                <Image *ngIf="club.facebook" horizontalAlignment="left" (tap)="openUrl(club.facebook)" src="~/assets/fb.png" width="10%" marginTop="15"></Image>
-                <StackLayout orientation="horizontal" *ngIf="club.twitter" padding="10 0" (tap)="openUrl('http://twitter.com/' + club.twitter)">
-                    <Image src="~/assets/twitter.png" width="12%"></Image>
-                    <Label text="@{{club.twitter}}"></Label>
-                </StackLayout>
-                <StackLayout (tap)="openUrl('http://instagram.com/' + club.instagram)" orientation="horizontal" *ngIf="club.instagram" padding="7 0">
-                    <Image src="~/assets/ig.png" width="10%"></Image>
-                    <Label text="  {{club.instagram}}"></Label>
-                </StackLayout>
-                <Label *ngIf="club.website" (tap)="openUrl(club.website)" text="{{club.website}}"></Label>
             </StackLayout>
         </ScrollView>
         <StackLayout>

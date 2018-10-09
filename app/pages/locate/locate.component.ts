@@ -22,6 +22,7 @@ export class LocateComponent {
     index: number;
     showingExpanded: boolean = false;
     selectedClub: any;
+    selectedClubIndex: number;
     regionList: any = [];
     stateList: any = [];
     showingPicker: boolean = false;
@@ -345,13 +346,15 @@ export class LocateComponent {
         this.filteredClubs = newArray;
     }
 
-    expandClub(item) {
+    expandClub(item, i) {
         this.selectedClub = item;
+        this.selectedClubIndex = i;
         this.showingExpanded = true;
     }
 
     collapse() {
         this.selectedClub = {};
+        this.selectedClubIndex = null;
         this.showingExpanded = false;
     }
 

@@ -5,11 +5,6 @@
     border-radius: 10px;
     margin: 10px 0;
 }
-.selectionHeader {
-    padding: 10px 0;
-    text-align: center;
-    margin: 0 auto;
-}
 .cardStyle {
     background-color: rgb(212, 212, 212);
     color: #000;
@@ -18,7 +13,7 @@
 .rightMargin {
     margin-right: 15px;
 }
-.popover {
-    width: 80%;
-    height: 80%;
+.expandedCard {
+    background-color: rgb(212, 212, 212);
+    padding: 12px;
 }
