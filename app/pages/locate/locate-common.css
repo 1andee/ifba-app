@@ -3,4 +3,21 @@
     background-color: lightblue;
     color: #000;
     border-radius: 10px;
+    margin: 10px 0;
+}
+.selectionHeader {
+    padding: 10px 0;
+    text-align: center;
+    margin: 0 auto;
+}
+.clubCard {
+    background-color: #fff;
+    margin: 10px;
+    padding: 10px;
+    border-width: 1px;
+    border-color: #000;
+    border-style: solid;
+    border-radius: 10px;
+    max-width: 250px;
+    text-align: left;
 }
