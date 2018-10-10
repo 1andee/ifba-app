@@ -6,7 +6,7 @@
                         <Button className="stateSelectBtn" text="{{this.picked}}" (tap)="showStatePicker()"></Button>
                     </StackLayout>
                     <StackLayout row="1" horizontalAlignment="center">
-                        <Label text="Showing {{filteredClubs.length}} of {{clubs.length}} clubs"></Label>
+                        <Label text="Showing {{filteredClubs.length}} result{{filteredClubs.length > 1 ? 's' : ''}}"></Label>
                     </StackLayout>
                     <StackLayout row="2">
                         <StackLayout *ngFor="let item of filteredClubs; let i = index;">
