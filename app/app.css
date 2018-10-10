@@ -17,6 +17,10 @@ ActionBar {
   font-size: 16px;
 }
 
+.fa {
+  font-family: FontAwesome, fontawesome-webfont;
+}
+
 .flp-container .flp-list-container {
   border-radius: 10;
 }

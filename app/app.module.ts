@@ -4,6 +4,7 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { AppRoutingModule } from "./app.routing";
 import { ServicesModule } from "./shared/services.module";
+import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 
 import { AppComponent } from "./app.component";
 import { LoginComponent } from "./pages/login/login.component";
@@ -23,7 +24,10 @@ import { LoginComponent } from "./pages/login/login.component";
         NativeScriptCommonModule,
         NativeScriptHttpClientModule,
         AppRoutingModule,
-        ServicesModule.forRoot()
+        ServicesModule.forRoot(),
+        TNSFontIconModule.forRoot({
+			'fa': './assets/font-awesome.css'
+		})
     ],
     declarations: [
         AppComponent,

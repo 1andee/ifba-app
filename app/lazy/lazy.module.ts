@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { navigatableComponents } from './lazy.routing';
+import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 
 import { routing } from './lazy.routing';
 
@@ -9,7 +10,8 @@ import { routing } from './lazy.routing';
     imports: [
         routing,
         NativeScriptRouterModule,
-        NativeScriptCommonModule
+        NativeScriptCommonModule,
+        TNSFontIconModule
     ],
     declarations: [
         ...navigatableComponents
