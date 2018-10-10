@@ -6,6 +6,7 @@ import * as utils from "utils/utils";
 import { registerElement } from "nativescript-angular/element-registry";
 registerElement('CardView', () => CardView);
 registerElement("FilterableListpicker", () => require("nativescript-filterable-listpicker").FilterableListpicker);
+registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 
 @Component({
     moduleId: module.id,

@@ -28,3 +28,24 @@
     border-radius: 10px;
     font-weight: bold;
 }
+.social-icon-section {
+    padding: 10px 0;
+}
+.margin10 {
+    margin: 0 10px;
+}
+.fa-facebook-square {
+    color: #3B5998;
+}
+.fa-twitter-square {
+    color: #00aced;
+}
+.ig-gradient {
+    border-radius: 10px;
+}
+.fa-instagram {
+    color: #fff;
+    text-align: center;
+    font-size: 40em;
+    margin-top: 3px;
+}

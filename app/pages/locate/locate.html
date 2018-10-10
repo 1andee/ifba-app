@@ -35,14 +35,16 @@
                                         <Label text="Region {{selectedClub.region}}"></Label>
                                         <Image src="~/assets/{{item.country}}.jpg" marginLeft="10" height="30px"></Image>
                                     </StackLayout>
-                                    <StackLayout orientation="horizontal" padding="10 0">
-                                        <Image *ngIf="selectedClub.facebook" src="~/assets/fb.png" width="35" (tap)="openUrl(selectedClub.facebook)" ></Image>
-                                        <Image *ngIf="selectedClub.twitter" src="~/assets/twitter.png" width="50" (tap)="openUrl('http://twitter.com/' + selectedClub.twitter)"></Image>
-                                        <Image *ngIf="selectedClub.instagram" src="~/assets/ig.png" width="38" (tap)="openUrl('http://instagram.com/' + selectedClub.instagram)"></Image>
+                                    <StackLayout class="social-icon-section" orientation="horizontal">
+                                        <Label *ngIf="selectedClub.facebook" style="font-size: 50em;" class="fa fa-facebook-square margin10" [text]="'fa-facebook-square' | fonticon" (tap)="openUrl(selectedClub.facebook)" ></Label>
+                                        <Label *ngIf="selectedClub.twitter" style="font-size: 50em;" class="fa fa-twitter-square margin10" [text]="'fa-twitter-square' | fonticon" (tap)="openUrl('http://twitter.com/' + selectedClub.twitter)"></Label>
+                                        <Gradient *ngIf="selectedClub.instagram" width="43" height="43" className="ig-gradient margin10" direction="to top right" colors="#fdf497, #fdf497, #fd5949, #d6249f, #285AEB">
+                                            <Label class="fa fa-instagram" [text]="'fa-instagram' | fonticon" (tap)="openUrl('http://instagram.com/' + selectedClub.instagram)"></Label>
+                                        </Gradient>
                                     </StackLayout>
-                                    <StackLayout orientation="horizontal">
-                                        <Image src="~/assets/ig.png" width="40"></Image>
-                                        <Label text="<<<fa globe {{selectedClub.website}}" marginLeft="10"></Label>
+                                    <StackLayout *ngIf="selectedClub.website" orientation="horizontal">
+                                        <Label class="fa" [text]="'fa-link' | fonticon"></Label>
+                                        <Label [text]="selectedClub.website" marginLeft="10"></Label>
                                     </StackLayout>
                                 </StackLayout>
                             </CardView>
