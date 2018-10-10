@@ -12,32 +12,9 @@ import { Accuracy } from "ui/enums"; // used to describe at what accuracy the lo
     styleUrls: ["./home-common.css", "./home.css"]
 })
 export class HomeComponent {
-    lat: any;
-    lon: any;
-    speed: any;
-    addr: any;
-
     constructor(private page: Page, private router: RouterExtensions) {
         page.actionBarHidden = false;
         page.actionBar.title = "Home";
-        this.lat = "";
-        this.lon = "";
-        this.addr = "";
-    }
-
-    getLocation() {
-        geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.high, maximumAge: 5000, timeout: 20000 })
-            .then(res => {
-                console.log(res);
-                this.lat = res.latitude;
-                this.lon = res.longitude;
-                // get the address (REQUIRES YOUR OWN GOOGLE MAP API KEY!)
-                // fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + res.latitude + "," + res.longitude + "&key=AIzaSyBfHUkK6hWIfd9fTCoq8jT2Hi0a9I9xg6k")
-                //     .then((response) => response.json()).then((r) => {
-                //         console.log('r', r);
-                //         this.addr = r.results[0].formatted_address;
-                //     });
-            });
     }
 
     goFacebook() {

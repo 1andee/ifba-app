@@ -4,6 +4,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { CardView } from 'nativescript-cardview';
 import * as utils from "utils/utils";
 import { registerElement } from "nativescript-angular/element-registry";
+import { Directions } from "nativescript-directions";
 registerElement('CardView', () => CardView);
 registerElement("FilterableListpicker", () => require("nativescript-filterable-listpicker").FilterableListpicker);
 registerElement("Gradient", () => require("nativescript-gradient").Gradient);
@@ -220,7 +221,7 @@ export class LocateComponent {
                 "state": "Quebec",
                 "state_code": "QC",
                 "city": "Quebec City",
-                "website": "http://www.clubappel99.ca",
+                "website": "www.clubappel99.ca",
                 "canteen": true
             },
             {
@@ -231,7 +232,7 @@ export class LocateComponent {
                 "state_code": "ON",
                 "city": "Toronto",
                 "website": "gtmaa.com",
-                "facebook": "http://facebook.com/gtmaa",
+                "facebook": "https://facebook.com/gtmaa",
                 "twitter": "gtmaa",
                 "instagram": "gtmaa.sup7",
                 "canteen": true
@@ -243,7 +244,7 @@ export class LocateComponent {
                 "state": "Quebec",
                 "state_code": "QC",
                 "city": "Montreal",
-                "website": "http://www.museedespompiers.com",
+                "website": "www.museedespompiers.com",
                 "facebook": "https://www.facebook.com/museedespompiersdemontreal",
                 "canteen": true,
                 "notes": ""
@@ -254,7 +255,7 @@ export class LocateComponent {
                 "country": "Canada",
                 "state": "Ontario",
                 "state_code": "ON",
-                "website": "http://www.ofba.ca",
+                "website": "www.ofba.ca",
                 "facebook": "https://www.facebook.com/groups/169640076461/",
                 "notes": ""
             },
@@ -324,6 +325,32 @@ export class LocateComponent {
     showStatePicker() {
         this.showingPicker = true;
         this.stateFilter.nativeElement.show();
+    }
+
+    getDirections() {
+        let directions = new Directions();
+        directions.available().then(avail => {
+            if (avail) {
+                directions.navigate({
+                    to: {
+                        address: `${this.selectedClub.address}, ${this.selectedClub.city}, ${this.selectedClub.state_code}`
+                    },
+                    type: "driving",
+                    ios: {
+                        preferGoogleMaps: true
+                    }
+                }).then(
+                    function() {
+                        console.log("Maps app launched.");
+                    },
+                    function(error) {
+                        console.log(error);
+                    }
+                );
+            } else {
+                console.log("Directions not available 😤")
+            }
+        });
     }
 
     filterClubs(state) {
