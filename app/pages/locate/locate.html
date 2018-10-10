@@ -5,7 +5,10 @@
                     <StackLayout row="0" paddingTop="10">
                         <Button className="stateSelectBtn" text="{{this.picked}}" (tap)="showStatePicker()"></Button>
                     </StackLayout>
-                    <StackLayout row="1">
+                    <StackLayout row="1" horizontalAlignment="center">
+                        <Label text="Showing {{filteredClubs.length}} of {{clubs.length}} clubs"></Label>
+                    </StackLayout>
+                    <StackLayout row="2">
                         <StackLayout *ngFor="let item of filteredClubs; let i = index;">
                             <CardView *ngIf="i !== selectedClubIndex" class="cardStyle" width="90%" margin="5" elevation="40" radius="1" (tap)="expandClub(item, i)">
                                 <GridLayout rows="*,*" columns="*,*" padding="12px">
@@ -20,7 +23,7 @@
                                 <StackLayout className="expandedCard">
                                     <GridLayout columns="*, auto" rows="*">
                                         <Label row="0" col="0" text="{{selectedClub.name}}" textwrap="true"></Label>
-                                        <Label row="0" col="1" class="closeBtn" text="x" (tap)="collapse()" height="20" width="20"></Label>
+                                        <Label row="0" col="1" verticalAlignment="top" class="closeBtn" text="x" (tap)="collapse()" height="20" width="20"></Label>
                                     </GridLayout>
                                     <StackLayout orientation="horizontal">
                                         <Label *ngIf="selectedClub.address" text="{{selectedClub.address}}, "></Label>
@@ -28,18 +31,19 @@
                                         <Label text="{{selectedClub.state_code}}"></Label>
                                         <Label *ngIf="selectedClub.country && selectedClub.country !== 'United States'" text=", {{selectedClub.country}}"></Label>
                                     </StackLayout>
-                                    <Label text="Region {{selectedClub.region}}"></Label>
-                                    <Image *ngIf="selectedClub.facebook" horizontalAlignment="left" (tap)="openUrl(selectedClub.facebook)" src="~/assets/fb.png" width="10%" marginTop="15"></Image>
-                                    <StackLayout orientation="horizontal" *ngIf="selectedClub.twitter" padding="10 0" (tap)="openUrl('http://twitter.com/' + selectedClub.twitter)">
-                                        <Image src="~/assets/twitter.png" width="12%"></Image>
-                                        <Label text="@{{selectedClub.twitter}}"></Label>
+                                    <StackLayout orientation="horizontal">
+                                        <Label text="Region {{selectedClub.region}}"></Label>
+                                        <Image src="~/assets/{{item.country}}.jpg" marginLeft="10" height="30px"></Image>
                                     </StackLayout>
-                                    <StackLayout (tap)="openUrl('http://instagram.com/' + selectedClub.instagram)" orientation="horizontal" *ngIf="selectedClub.instagram" padding="7 0">
-                                        <Image src="~/assets/ig.png" width="10%"></Image>
-                                        <Label text="  {{selectedClub.instagram}}"></Label>
+                                    <StackLayout orientation="horizontal" padding="10 0">
+                                        <Image *ngIf="selectedClub.facebook" src="~/assets/fb.png" width="35" (tap)="openUrl(selectedClub.facebook)" ></Image>
+                                        <Image *ngIf="selectedClub.twitter" src="~/assets/twitter.png" width="50" (tap)="openUrl('http://twitter.com/' + selectedClub.twitter)"></Image>
+                                        <Image *ngIf="selectedClub.instagram" src="~/assets/ig.png" width="38" (tap)="openUrl('http://instagram.com/' + selectedClub.instagram)"></Image>
                                     </StackLayout>
-                                    <Label *ngIf="selectedClub.website" (tap)="openUrl(selectedClub.website)" text="{{selectedClub.website}}"></Label>
-                                    <Image src="~/assets/{{item.country}}.jpg" horizontalAlignment="left" height="30px"></Image>
+                                    <StackLayout orientation="horizontal">
+                                        <Image src="~/assets/ig.png" width="40"></Image>
+                                        <Label text="<<<fa globe {{selectedClub.website}}" marginLeft="10"></Label>
+                                    </StackLayout>
                                 </StackLayout>
                             </CardView>
                         </StackLayout>

@@ -315,6 +315,7 @@ export class LocateComponent {
     }
     
     itemTapped(args) {
+        this.collapse();
         this.filterClubs(args.selectedItem);
         this.showingPicker = false;
     }
