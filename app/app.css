@@ -12,7 +12,7 @@ refer to http://docs.nativescript.org/ui/theme.
 @import '~nativescript-theme-core/css/core.light.css';
 
 ActionBar {
-  background-color: rgb(183,0,34);
+  background-color: #B70034;
   color: rgb(241,234,57);
   font-size: 16px;
 }

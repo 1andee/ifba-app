@@ -1,4 +1,4 @@
-<StackLayout>
+<StackLayout backgroundColor="#D4D4D4">
         <ScrollView>
             <StackLayout *ngIf="!this.showingPicker">
                 <GridLayout rows="auto, auto, auto, auto" class="clubGrid">
@@ -18,8 +18,10 @@
                             </CardView>
                             <CardView *ngIf="i === selectedClubIndex" class="cardStyle" width="90%" margin="5" elevation="40" radius="1">
                                 <StackLayout className="expandedCard">
-                                    <Label text="x" (tap)="collapse()" color="#000" width="20" horizontalAlignment="right"></Label>
-                                    <Label text="{{selectedClub.name}}" marginTop="10" textwrap="true"></Label>
+                                    <GridLayout columns="*, auto" rows="*">
+                                        <Label row="0" col="0" text="{{selectedClub.name}}" textwrap="true"></Label>
+                                        <Label row="0" col="1" class="closeBtn" text="x" (tap)="collapse()" height="20" width="20"></Label>
+                                    </GridLayout>
                                     <StackLayout orientation="horizontal">
                                         <Label *ngIf="selectedClub.address" text="{{selectedClub.address}}, "></Label>
                                         <Label *ngIf="selectedClub.city" text="{{selectedClub.city}}, "></Label>
@@ -37,6 +39,7 @@
                                         <Label text="  {{selectedClub.instagram}}"></Label>
                                     </StackLayout>
                                     <Label *ngIf="selectedClub.website" (tap)="openUrl(selectedClub.website)" text="{{selectedClub.website}}"></Label>
+                                    <Image src="~/assets/{{item.country}}.jpg" horizontalAlignment="left" height="30px"></Image>
                                 </StackLayout>
                             </CardView>
                         </StackLayout>
