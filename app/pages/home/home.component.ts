@@ -2,8 +2,6 @@ import { Component } from "@angular/core";
 import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular/router";
 import * as utils from "utils/utils";
-import * as geolocation from "nativescript-geolocation";
-import { Accuracy } from "ui/enums"; // used to describe at what accuracy the location should be get
 
 @Component({
     moduleId: module.id,
