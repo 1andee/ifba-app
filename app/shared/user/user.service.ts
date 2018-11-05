@@ -12,7 +12,7 @@ export class UserService {
     }
 
     login() {
-        return this.http.get(`https://raw.githubusercontent.com/1andee/ifba-server/master/version.json?token=AQDLXGCkhSvqfn8WvoizDFgf7KzUiUvIks5bVqD_wA%3D%3D`)
-            .pipe(map(reponse => reponse));
+        return this.http.get(Config.apiUrl + '/version')
+            .pipe(map(response => response));
     }
 }
