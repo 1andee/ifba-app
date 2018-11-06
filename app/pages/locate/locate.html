@@ -1,7 +1,7 @@
 <StackLayout backgroundColor="#D4D4D4">
         <ScrollView>
             <StackLayout *ngIf="!this.showingPicker">
-                <GridLayout rows="auto, auto, auto, auto" class="clubGrid">
+                <GridLayout rows="auto, auto, auto, auto" className="clubGrid">
                     <StackLayout row="0" paddingTop="10">
                         <Button className="stateSelectBtn" text="{{this.picked}}" (tap)="showStatePicker()"></Button>
                     </StackLayout>
@@ -10,7 +10,7 @@
                     </StackLayout>
                     <StackLayout row="2">
                         <StackLayout *ngFor="let item of filteredClubs; let i = index;">
-                            <CardView *ngIf="i !== selectedClubIndex" class="cardStyle" width="90%" margin="5" elevation="40" radius="1" (tap)="expandClub(item, i)">
+                            <CardView *ngIf="i !== selectedClubIndex" className="cardStyle" width="90%" margin="5" elevation="40" radius="1" (tap)="expandClub(item, i)">
                                 <GridLayout rows="*,*" columns="*,*" padding="12px">
                                     <Label text="{{item.name}}" horizontalAlignment="left" row="0" col="0" colSpan="2" textwrap="true"></Label>
                                     <StackLayout row="1" orientation="horizontal">
@@ -19,11 +19,11 @@
                                     </StackLayout>
                                 </GridLayout>
                             </CardView>
-                            <CardView *ngIf="i === selectedClubIndex" class="cardStyle" width="90%" margin="5" elevation="40" radius="1">
+                            <CardView *ngIf="i === selectedClubIndex" className="cardStyle" width="90%" margin="5" elevation="40" radius="1">
                                 <StackLayout className="expandedCard">
                                     <GridLayout columns="*, auto" rows="*">
                                         <Label row="0" col="0" text="{{selectedClub.name}}" textwrap="true"></Label>
-                                        <Label row="0" col="1" verticalAlignment="top" class="closeBtn" text="x" (tap)="collapse()" height="20" width="20"></Label>
+                                        <Label row="0" col="1" verticalAlignment="top" className="closeBtn" text="x" (tap)="collapse()" height="20" width="20"></Label>
                                     </GridLayout>
                                     <StackLayout orientation="horizontal">
                                         <Label *ngIf="selectedClub.address" text="{{selectedClub.address}}, "></Label>
@@ -35,15 +35,15 @@
                                         <Label text="Region {{selectedClub.region}}"></Label>
                                         <Image src="~/assets/{{item.country}}.jpg" marginLeft="10" height="30px"></Image>
                                     </StackLayout>
-                                    <StackLayout class="social-icon-section" orientation="horizontal">
-                                        <Label *ngIf="selectedClub.facebook" style="font-size: 40em;" class="fa fa-facebook-square margin10" [text]="'fa-facebook-square' | fonticon" (tap)="openUrl(selectedClub.facebook)" ></Label>
-                                        <Label *ngIf="selectedClub.twitter" style="font-size: 40em;" class="fa fa-twitter-square margin10" [text]="'fa-twitter-square' | fonticon" (tap)="openUrl('http://twitter.com/' + selectedClub.twitter)"></Label>
+                                    <StackLayout className="social-icon-section" orientation="horizontal">
+                                        <Label *ngIf="selectedClub.facebook" style="font-size: 40em;" className="fa fa-facebook-square margin10" [text]="'fa-facebook-square' | fonticon" (tap)="openUrl(selectedClub.facebook)" ></Label>
+                                        <Label *ngIf="selectedClub.twitter" style="font-size: 40em;" className="fa fa-twitter-square margin10" [text]="'fa-twitter-square' | fonticon" (tap)="openUrl('http://twitter.com/' + selectedClub.twitter)"></Label>
                                         <StackLayout *ngIf="selectedClub.instagram" width="34" height="34" className="ig-gradient margin10">
                                             <Label className="fa fa-instagram" [text]="'fa-instagram' | fonticon" (tap)="openUrl('http://instagram.com/' + selectedClub.instagram)"></Label>
                                         </StackLayout>
                                     </StackLayout>
                                     <StackLayout *ngIf="selectedClub.website" orientation="horizontal">
-                                        <Label class="fa" [text]="'fa-link' | fonticon" (tap)="openUrl('http://' + selectedClub.website)"></Label>
+                                        <Label className="fa" [text]="'fa-link' | fonticon" (tap)="openUrl('http://' + selectedClub.website)"></Label>
                                         <Label [text]="selectedClub.website" marginLeft="10" (tap)="openUrl('http://' + selectedClub.website)"></Label>
                                     </StackLayout>
                                     <StackLayout *ngIf="selectedClub.address" paddingTop="10">
