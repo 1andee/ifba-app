@@ -38,9 +38,9 @@
                                     <StackLayout class="social-icon-section" orientation="horizontal">
                                         <Label *ngIf="selectedClub.facebook" style="font-size: 40em;" class="fa fa-facebook-square margin10" [text]="'fa-facebook-square' | fonticon" (tap)="openUrl(selectedClub.facebook)" ></Label>
                                         <Label *ngIf="selectedClub.twitter" style="font-size: 40em;" class="fa fa-twitter-square margin10" [text]="'fa-twitter-square' | fonticon" (tap)="openUrl('http://twitter.com/' + selectedClub.twitter)"></Label>
-                                        <Gradient *ngIf="selectedClub.instagram" width="34" height="34" className="ig-gradient margin10" direction="to top right" colors="#fdf497, #fdf497, #fd5949, #d6249f, #285AEB">
-                                            <Label class="fa fa-instagram" [text]="'fa-instagram' | fonticon" (tap)="openUrl('http://instagram.com/' + selectedClub.instagram)"></Label>
-                                        </Gradient>
+                                        <StackLayout *ngIf="selectedClub.instagram" width="34" height="34" className="ig-gradient margin10">
+                                            <Label className="fa fa-instagram" [text]="'fa-instagram' | fonticon" (tap)="openUrl('http://instagram.com/' + selectedClub.instagram)"></Label>
+                                        </StackLayout>
                                     </StackLayout>
                                     <StackLayout *ngIf="selectedClub.website" orientation="horizontal">
                                         <Label class="fa" [text]="'fa-link' | fonticon" (tap)="openUrl('http://' + selectedClub.website)"></Label>

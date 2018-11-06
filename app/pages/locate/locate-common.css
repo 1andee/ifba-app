@@ -49,3 +49,6 @@
     font-size: 30em;
     margin-top: 4px;
 }
+.ig-gradient {
+    background: linear-gradient(to top right, #fdf497, #fdf497, #fd5949, #d6249f, #285AEB);
+}
