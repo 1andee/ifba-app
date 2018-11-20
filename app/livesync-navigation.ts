@@ -2,6 +2,7 @@
 import { Router } from "@angular/router";
 import { onBeforeLivesync, onAfterLivesync } from "nativescript-angular/platform-common";
 import { RouterExtensions } from "nativescript-angular/router";
+import { NgZone } from "@angular/core";
 
 let cachedUrl: string;
 onBeforeLivesync.subscribe(moduleRef => {
@@ -17,8 +18,11 @@ onAfterLivesync.subscribe(({ moduleRef, error }) => {
     console.log(`#### onAfterLivesync moduleRef: ${moduleRef} error: ${error}`);
     if (moduleRef) {
         const router = <RouterExtensions>moduleRef.injector.get(RouterExtensions);
+        const ngZone = <NgZone>moduleRef.injector.get(NgZone);
         if (router && cachedUrl) {
-            router.navigateByUrl(cachedUrl, { animated: false });
+            ngZone.run(() => {
+                router.navigateByUrl(cachedUrl, { animated: false });
+            });
         }
     }
 });
