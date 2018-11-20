@@ -12,4 +12,3 @@ typings/
 .DS_Store
 app/tns_modules/
 !app/application.android.js
-!webpack.config.js
