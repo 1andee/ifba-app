@@ -1,9 +1,9 @@
 <StackLayout backgroundColor="#D4D4D4">
         <ScrollView>
-            <StackLayout *ngIf="!this.showingPicker">
+            <StackLayout *ngIf="!showingPicker && !isLoading">
                 <GridLayout rows="auto, auto, auto, auto" className="clubGrid">
                     <StackLayout row="0" paddingTop="10">
-                        <Button className="stateSelectBtn" text="{{this.picked}}" (tap)="showStatePicker()"></Button>
+                        <Button className="stateSelectBtn" text="{{picked}}" (tap)="showStatePicker()"></Button>
                     </StackLayout>
                     <StackLayout row="1" horizontalAlignment="center">
                         <Label text="Showing {{filteredClubs.length}} result{{filteredClubs.length > 1 ? 's' : ''}}"></Label>

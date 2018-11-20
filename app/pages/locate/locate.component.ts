@@ -16,6 +16,7 @@ registerElement("FilterableListpicker", () => require("nativescript-filterable-l
 })
 export class LocateComponent {
     @ViewChild('stateFilter') stateFilter: ElementRef;
+    isLoading: boolean = true;
     clubs: any = [];
     filteredClubs: any = [];
     stateSelector: any = [];
@@ -372,6 +373,7 @@ export class LocateComponent {
             return 0;
         });
         this.filteredClubs = newArray;
+        this.isLoading = false;
     }
 
     expandClub(item, i) {
